@@ -83,8 +83,9 @@ const when = (conditions, data) => {
         return processRule(conditions, data);
     }
 
-    var type = conditions.shift();
-    var result = conditions.map((condition, index) => {
+    var logicalRule = conditions.slice(0, 1)[0];
+    var comparisonRules = conditions.slice(1);
+    var result = comparisonRules.map((condition, index) => {
         if (isValidCondition(condition)) {
             return when(condition, data)
         }
@@ -92,7 +93,7 @@ const when = (conditions, data) => {
         return processRule(condition, data);
     })
 
-    return processCondition(type, result)
+    return processCondition(logicalRule, result)
 }
 
 export default when;
