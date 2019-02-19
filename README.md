@@ -66,9 +66,9 @@ let rule = ['a', 1, 'is']
 
 or
 
-#### Check whether data.c.e[0].f = 1
+#### Check whether data.c.e\[0\].f = 1
 ```js
-let rule = ['c.e[0].f', 1, 'is']
+let rule = ['c.e[0]`.f', 1, 'is']
 ```
 
 ### Rules with multiple comparisons
