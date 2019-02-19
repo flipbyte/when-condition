@@ -1,29 +1,34 @@
 {
-  "name": "when-condition",
-  "version": "1.0.0",
-  "description": "Describe when-condition here",
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "files": [
-    "es",
-    "lib",
-    "umd"
-  ],
-  "scripts": {
-    "build": "nwb build-web-module",
-    "clean": "nwb clean-module",
-    "prepublishOnly": "npm run build",
-    "test": "nwb test",
-    "test:coverage": "nwb test --coverage",
-    "test:watch": "nwb test --server"
-  },
-  "dependencies": {
-  },
-  "devDependencies": {
-    "nwb": "0.23.x"
-  },
-  "author": "",
-  "homepage": "",
-  "license": "MIT",
-  "repository": ""
+    "name": "when-condition",
+    "version": "0.1.0",
+    "description": "Check conditional statements and return true/false",
+    "main": "lib/index.js",
+    "module": "es/index.js",
+    "files": [
+        "es",
+        "lib",
+        "umd"
+    ],
+    "scripts": {
+        "build": "nwb build-web-module",
+        "clean": "nwb clean-module",
+        "prepublishOnly": "npm run build",
+        "test": "nwb test",
+        "test:coverage": "nwb test --coverage",
+        "test:watch": "nwb test --server"
+    },
+    "dependencies": {
+        "lodash.get": "^4.4.2"
+    },
+    "devDependencies": {
+        "karma-chai-plugins": "^0.9.0",
+        "nwb": "0.23.x"
+    },
+    "author": "",
+    "homepage": "",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/flipbyte/when-condition.git"
+    }
 }

@@ -1,16 +1,149 @@
 # when-condition
 
-[![Travis][build-badge]][build]
+[Powered by Flipbyte](https://www.flipbyte.com/)
+
+[![Build Status][build-badge]][build]
 [![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
+[![Coverage Status][coveralls-badge]][coveralls]
+[![license][license-badge]][license]
+[![Codacy Badge][codacy-badge]][codacy]
 
-Describe when-condition here.
+Check conditional statements and return true/false
 
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
+## Installation
 
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
+```sh
+npm i @flipbyte/when-condition
+```
 
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
+## Usage
+
+Define your conditionals using an array with logical rule ('and' or 'or') as the first element followed by an array of comparison conditions.
+
+General representation of a logical rule is as follows:
+
+```js
+['{your logical rule}', [{your conditional rule 1}], [{your conditional rule 2}], ...]
+```
+
+Conditional rule is an array with 3 elements:
+
+-   The key of the object whose value needs to be compared with a condition.
+-   The comparison value.
+-   The comparison rule.
+
+General representation of a comparison rule is as follows:
+
+```js
+['{key}', '{comparison value}', '{comparison rule}']
+```
+
+## Example
+
+Consider an object as follows:
+
+```js
+let data = {
+    a: 1,
+    b: 2,
+    c: {
+        d: 'string',
+        e: [{
+            f: 1,
+            g: 2
+        }]
+    }
+}
+```
+
+### Single rule
+
+#### To simply check one rule (say) data.a = 1
+
+```js
+let rule = ['a', 1, 'is']
+```
+
+or
+
+#### Check whether data.c.e[0].f = 1
+```js
+let rule = ['c.e[0].f', 1, 'is']
+```
+
+### Rules with multiple comparisons
+
+#### Check whether both data.a = 1 and data.b = 2
+
+```js
+let rule = ['and', ['a', 1, 'is'], ['b', 2, 'is']]
+```
+
+#### Check whether either data.a = 1 or data.b = 2
+
+```js
+let rule = ['or', ['a', 1, 'is'], ['b', 2, 'is']]
+```
+
+### Complex rules
+
+#### Check whether (data.a = 1 and data.b = 2) or (data.b = 2 and data.c.d != 'string')
+
+```js
+let rule = ['or', ['and', ['a', 1, 'is'], ['b', 2, 'is']], ['and', ['b', 2, 'is'], ['c.d', 'string', 'isNot']]]
+```
+
+### Evaluating rules
+
+```js
+import when from 'when-condition'
+
+when(rule, data) // => returns true or false
+
+```
+
+### Rules using callback
+
+You can also pass a callback function to check the data.
+
+```js
+when(function(data) {
+    return data.a !== data.b
+}, data)
+```
+
+## Logical rules
+
+There are 2 types of logical rules:
+-   ```and``` - checks whether all the conditions evaluate to true.
+-   ```or```  - checks whether atleast one condition evaluates to true.
+
+## Comparison rules
+
+Following are the available comparison rules:
+-   ```is``` - returns true if the object value strictly matches the comparison value.
+-   ```isNot``` - returns true if the object value does not match the comparison value.
+-   ```anyOf``` - returns true if at least one of the comparison values matches the object key value. The comparison value needs to be an array.
+-   ```noneOf``` - returns true if none of the comparison values match the object key value. The comparison value needs to be an array.
+-   ```gt``` - returns true if the object key value is greater than the comparison value
+-   ```gte``` - returns true if the object key value is greater than or equal to the comparison value
+-   ```lt``` - returns true if the object key value is lesser than the comparison value
+-   ```lte``` - returns true if the object key value is lesser than or equal to the comparison value
+
+## License
+The MIT License (MIT)
+
+[build-badge]: https://travis-ci.org/flipbyte/when-condition.svg?branch=master
+[build]: https://travis-ci.org/flipbyte/when-condition
+
+[npm-badge]: https://img.shields.io/npm/v/@flipbyte/when-condition.svg
+[npm]: https://www.npmjs.com/package/@flipbyte/when-condition
+
+[coveralls-badge]: https://coveralls.io/repos/github/flipbyte/when-condition/badge.svg
+[coveralls]: https://coveralls.io/github/flipbyte/when-condition
+
+[license-badge]: https://badgen.now.sh/badge/license/MIT
+[license]: ./LICENSE
+
+[codacy-badge]: https://api.codacy.com/project/badge/Grade/18e71277b7e94ad9aca885b5ba3d890c
+[codacy]: https://www.codacy.com/app/easeq/when-condition?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=flipbyte/when-condition&amp;utm_campaign=Badge_Grade
