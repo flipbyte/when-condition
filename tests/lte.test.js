@@ -1,28 +1,27 @@
-
 import when from '../src/index';
 
 describe('lte', () => {
     let data = { age: 18 }
 
     it('single rule', () => {
-        expect(when(['age', 19, 'lte'], data)).to.equal(true)
-        expect(when(['age', '19', 'lte'], data)).to.equal(true)
-        expect(when(['age', 18, 'lte'], data)).to.equal(true)
-        expect(when(['age', 16, 'lte'], data)).to.equal(false)
+        expect(when(['lte', 'age', 19], data)).to.equal(true)
+        expect(when(['lte', 'age', '19'], data)).to.equal(true)
+        expect(when(['lte', 'age', 18], data)).to.equal(true)
+        expect(when(['lte', 'age', 16], data)).to.equal(false)
     })
 
     it('single rule using "and"', () => {
-        expect(when(['and', ['age', 19, 'lte']], data)).to.equal(true)
-        expect(when(['and', ['age', '19', 'lte']], data)).to.equal(true)
-        expect(when(['and', ['age', 18, 'lte']], data)).to.equal(true)
-        expect(when(['and', ['age', 16, 'lte']], data)).to.equal(false)
+        expect(when(['and', ['lte', 'age', 19]], data)).to.equal(true)
+        expect(when(['and', ['lte', 'age', '19']], data)).to.equal(true)
+        expect(when(['and', ['lte', 'age', 18]], data)).to.equal(true)
+        expect(when(['and', ['lte', 'age', 16]], data)).to.equal(false)
     })
 
     it('single rule using "or"', () => {
-        expect(when(['or', ['age', 19, 'lte']], data)).to.equal(true)
-        expect(when(['or', ['age', '19', 'lte']], data)).to.equal(true)
-        expect(when(['or', ['age', 18, 'lte']], data)).to.equal(true)
-        expect(when(['or', ['age', 16, 'lte']], data)).to.equal(false)
+        expect(when(['or', ['lte', 'age', 19]], data)).to.equal(true)
+        expect(when(['or', ['lte', 'age', '19']], data)).to.equal(true)
+        expect(when(['or', ['lte', 'age', 18]], data)).to.equal(true)
+        expect(when(['or', ['lte', 'age', 16]], data)).to.equal(false)
     })
 
     it('deep object key', () => {
@@ -35,10 +34,10 @@ describe('lte', () => {
             }
         }
 
-        expect(when(['contact.person.age', 19, 'lte'], data)).to.equal(true)
-        expect(when(['contact.person.age', '19', 'lte'], data)).to.equal(true)
-        expect(when(['contact.person.age', 18, 'lte'], data)).to.equal(true)
-        expect(when(['contact.person.age', 16, 'lte'], data)).to.equal(false)
+        expect(when(['lte', 'contact.person.age', 19], data)).to.equal(true)
+        expect(when(['lte', 'contact.person.age', '19'], data)).to.equal(true)
+        expect(when(['lte', 'contact.person.age', 18], data)).to.equal(true)
+        expect(when(['lte', 'contact.person.age', 16], data)).to.equal(false)
     })
 
     it('deep object array key', () => {
@@ -51,20 +50,20 @@ describe('lte', () => {
             }
         }
 
-        expect(when(['contact.person.0.age', 19, 'lte'], data)).to.equal(true)
-        expect(when(['contact.person.0.age', '19', 'lte'], data)).to.equal(true)
-        expect(when(['contact.person.0.age', 18, 'lte'], data)).to.equal(true)
-        expect(when(['contact.person.0.age', 16, 'lte'], data)).to.equal(false)
+        expect(when(['lte', 'contact.person.0.age', 19], data)).to.equal(true)
+        expect(when(['lte', 'contact.person.0.age', '19'], data)).to.equal(true)
+        expect(when(['lte', 'contact.person.0.age', 18], data)).to.equal(true)
+        expect(when(['lte', 'contact.person.0.age', 16], data)).to.equal(false)
 
-        expect(when(['contact.person[0].age', 19, 'lte'], data)).to.equal(true)
-        expect(when(['contact.person[0].age', '19', 'lte'], data)).to.equal(true)
-        expect(when(['contact.person[0].age', 18, 'lte'], data)).to.equal(true)
-        expect(when(['contact.person[0].age', 16, 'lte'], data)).to.equal(false)
+        expect(when(['lte', 'contact.person[0].age', 19], data)).to.equal(true)
+        expect(when(['lte', 'contact.person[0].age', '19'], data)).to.equal(true)
+        expect(when(['lte', 'contact.person[0].age', 18], data)).to.equal(true)
+        expect(when(['lte', 'contact.person[0].age', 16], data)).to.equal(false)
 
-        expect(when(['contact.person[1].age', 19, 'lte'], data)).to.equal(false)
-        expect(when(['contact.person[1].age', '19', 'lte'], data)).to.equal(false)
-        expect(when(['contact.person[1].age', 18, 'lte'], data)).to.equal(false)
-        expect(when(['contact.person[1].age', 16, 'lte'], data)).to.equal(false)
+        expect(when(['lte', 'contact.person[1].age', 19], data)).to.equal(false)
+        expect(when(['lte', 'contact.person[1].age', '19'], data)).to.equal(false)
+        expect(when(['lte', 'contact.person[1].age', 18], data)).to.equal(false)
+        expect(when(['lte', 'contact.person[1].age', 16], data)).to.equal(false)
 
     })
 })

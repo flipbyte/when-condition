@@ -19,11 +19,11 @@ describe('when', () => {
 
     it('mixed deep conditions', () => {
         let rules = ['and',
-            ['name', 'John Doe', 'is'],
-            ['age', 18, 'gte'],
+            ['is', 'name', 'John Doe'],
+            ['gte', 'age', 18],
             ['or',
-                ['country', 'Germany', 'is'],
-                ['country', 'Spain', 'is']
+                ['is', 'country', 'Germany'],
+                ['is', 'country', 'Spain']
             ]
         ]
         expect(when(rules, data)).to.equal(true)
@@ -32,11 +32,11 @@ describe('when', () => {
     it('throws error on invalid logical rule', () => {
         (function() {
             let rules = ['and',
-                ['name', 'John Doe', 'is'],
-                ['age', 18, 'gte'],
+                ['is', 'name', 'John Doe'],
+                ['gte', 'age', 18],
                 ['xor',
-                    ['country', 'Germany', 'is'],
-                    ['country', 'Spain', 'is']
+                    ['is', 'country', 'Germany'],
+                    ['is', 'country', 'Spain']
                 ]
             ]
 

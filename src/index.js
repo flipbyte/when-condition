@@ -19,7 +19,7 @@ var rules = {
     // },
     anyOf: function(key, values, data) {
         if(!Array.isArray(values)) {
-            throw Error('"anyOf" condition requires an array as #2 argument');
+            throw Error('"anyOf" condition requires an array as #3 argument');
         }
 
         let dataValue = get(data, key);
@@ -27,7 +27,7 @@ var rules = {
     },
     noneOf: function(key, values, data) {
         if(!Array.isArray(values)) {
-            throw Error('"noneOf" condition requires an array as #2 argument');
+            throw Error('"noneOf" condition requires an array as #3 argument');
         }
 
         let dataValue = get(data, key);
@@ -58,7 +58,7 @@ const isValidCondition = (conditions) => {
     return false;
 }
 
-const processRule = ([key, value, condition], data) => {
+const processRule = ([condition, key, value], data) => {
     if(typeof condition !== 'string' || rules[condition] === undefined) {
         throw Error('Invalid comparison rule ' + condition + '.');
     }
