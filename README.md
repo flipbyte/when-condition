@@ -35,7 +35,7 @@ Conditional rule is an array with 3 elements:
 General representation of a comparison rule is as follows:
 
 ```js
-['{key}', '{comparison value}', '{comparison rule}']
+['{comparison rule}', '{key}', '{comparison value}']
 ```
 
 ## Example
@@ -61,14 +61,14 @@ let data = {
 #### To simply check one rule (say) data.a = 1
 
 ```js
-let rule = ['a', 1, 'is']
+let rule = ['is', 'a', 1]
 ```
 
 or
 
 #### Check whether data.c.e\[0\].f = 1
 ```js
-let rule = ['c.e[0]`.f', 1, 'is']
+let rule = ['is', 'c.e[0]`.f', 1]
 ```
 
 ### Rules with multiple comparisons
@@ -76,13 +76,13 @@ let rule = ['c.e[0]`.f', 1, 'is']
 #### Check whether both data.a = 1 and data.b = 2
 
 ```js
-let rule = ['and', ['a', 1, 'is'], ['b', 2, 'is']]
+let rule = ['and', ['is', 'a', 1], ['is', 'b', 2]]
 ```
 
 #### Check whether either data.a = 1 or data.b = 2
 
 ```js
-let rule = ['or', ['a', 1, 'is'], ['b', 2, 'is']]
+let rule = ['or', ['is', 'a', 1], ['is', 'b', 2]]
 ```
 
 ### Complex rules
@@ -90,7 +90,7 @@ let rule = ['or', ['a', 1, 'is'], ['b', 2, 'is']]
 #### Check whether (data.a = 1 and data.b = 2) or (data.b = 2 and data.c.d != 'string')
 
 ```js
-let rule = ['or', ['and', ['a', 1, 'is'], ['b', 2, 'is']], ['and', ['b', 2, 'is'], ['c.d', 'string', 'isNot']]]
+let rule = ['or', ['and', ['is', 'a', 1], ['is', 'b', 2]], ['and', ['is', 'b', 2], ['is', 'c.d', 'string']]]
 ```
 
 ### Evaluating rules

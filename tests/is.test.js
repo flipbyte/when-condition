@@ -1,22 +1,21 @@
-
 import when from '../src/index';
 
 describe('is', () => {
     let data = { name: 'John Doe' }
 
     it('single rule', () => {
-        expect(when(['name', 'John Doe', 'is'], data)).to.equal(true)
-        expect(when(['name', 'John', 'is'], data)).to.equal(false)
+        expect(when(['is', 'name', 'John Doe'], data)).to.equal(true)
+        expect(when(['is', 'name', 'John'], data)).to.equal(false)
     })
 
     it('single rule using "and"', () => {
-        expect(when(['and', ['name', 'John Doe', 'is']], data)).to.equal(true)
-        expect(when(['and', ['name', 'John', 'is']], data)).to.equal(false)
+        expect(when(['and', ['is', 'name', 'John Doe']], data)).to.equal(true)
+        expect(when(['and', ['is', 'name', 'John']], data)).to.equal(false)
     })
 
     it('single rule using "or"', () => {
-        expect(when(['or', ['name', 'John Doe', 'is']], data)).to.equal(true)
-        expect(when(['or', ['name', 'John', 'is']], data)).to.equal(false)
+        expect(when(['or', ['is', 'name', 'John Doe']], data)).to.equal(true)
+        expect(when(['or', ['is', 'name', 'John']], data)).to.equal(false)
     })
 
     it('deep object key', () => {
@@ -27,8 +26,8 @@ describe('is', () => {
                 }
             }
         }
-        expect(when(['contact.person.name', 'John Doe', 'is'], data)).to.equal(true)
-        expect(when(['contact.person.lastName', 'John Doe', 'is'], data)).to.equal(false)
+        expect(when(['is', 'contact.person.name', 'John Doe'], data)).to.equal(true)
+        expect(when(['is', 'contact.person.lastName', 'John Doe'], data)).to.equal(false)
     })
 
     it('deep object array key', () => {
@@ -39,8 +38,8 @@ describe('is', () => {
                 }]
             }
         }
-        expect(when(['contact.person.0.name', 'John Doe', 'is'], data)).to.equal(true)
-        expect(when(['contact.person[0].name', 'John Doe', 'is'], data)).to.equal(true)
-        expect(when(['contact.person[1].name', 'John Doe', 'is'], data)).to.equal(false)
+        expect(when(['is', 'contact.person.0.name', 'John Doe'], data)).to.equal(true)
+        expect(when(['is', 'contact.person[0].name', 'John Doe'], data)).to.equal(true)
+        expect(when(['is', 'contact.person[1].name', 'John Doe'], data)).to.equal(false)
     })
 })
