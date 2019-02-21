@@ -23,14 +23,14 @@ Define your conditionals using an array with logical rule ('and' or 'or') as the
 General representation of a logical rule is as follows:
 
 ```js
-['{your logical rule}', [{your conditional rule 1}], [{your conditional rule 2}], ...]
+['{your logical rule}', [{your comparison rule 1}], [{your comparison rule 2}], ...]
 ```
 
-Conditional rule is an array with 3 elements:
+Comparison rule is an array with 3 elements:
 
+-   The comparison rule.
 -   The key of the object whose value needs to be compared with a condition.
 -   The comparison value.
--   The comparison rule.
 
 General representation of a comparison rule is as follows:
 
