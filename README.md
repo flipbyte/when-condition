@@ -1,6 +1,6 @@
 # when-condition
 
-[Powered by Flipbyte](https://www.flipbyte.com/)
+[Developed by Flipbyte](https://www.flipbyte.com/)
 
 [![Build Status][build-badge]][build]
 [![npm package][npm-badge]][npm]
