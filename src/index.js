@@ -9,14 +9,17 @@ var rules = {
     isNot: function(key, value, data) {
         return get(data, key) != value;
     },
-    // allOf: function(key, value, data) {
-    //     if(!Array.isArray(value)) {
-    //         throw Error('"allOf" condition requires an array as #2 argument');
-    //     }
-    //
-    //     let dataValue = get(data, key);
-    //     return value.every(currentValue => currentValue === dataValue)
-    // },
+    isOfType: function(key, value, data) {
+        return typeof get(data, key) === value;
+    },
+    allOf: function(key, values, data) {
+        if(!Array.isArray(values)) {
+            throw Error('"allOf" condition requires an array as #3 argument');
+        }
+
+        var dataValues = get(data, key);
+        return values.every((currentValue) => dataValues.includes(currentValue))
+    },
     anyOf: function(key, values, data) {
         if(!Array.isArray(values)) {
             throw Error('"anyOf" condition requires an array as #3 argument');
