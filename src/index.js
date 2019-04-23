@@ -9,6 +9,9 @@ var rules = {
     isNot: function(key, value, data) {
         return get(data, key) != value;
     },
+    isOfType: function(key, value, data) {
+        return typeof get(data, key) === value;
+    },
     // allOf: function(key, value, data) {
     //     if(!Array.isArray(value)) {
     //         throw Error('"allOf" condition requires an array as #2 argument');
