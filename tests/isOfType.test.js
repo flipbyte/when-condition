@@ -1,6 +1,6 @@
 import when from '../src/index';
 
-describe('is', () => {
+describe('isOfType', () => {
     let data = { name: 'John Doe' }
 
     it('single rule', () => {
