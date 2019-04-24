@@ -1,4 +1,8 @@
-var get = require('lodash.get');
+const get = (obj, path, defaultValue = undefined) => (
+    String.prototype.split.call(path, /[,[\].]+?/)
+        .filter(Boolean)
+        .reduce((a, c) => (a && Object.hasOwnProperty.call(a, c)) ? a[c] : defaultValue, obj)
+);
 
 const logicalOperators = ['and', 'or'];
 
