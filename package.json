@@ -1,6 +1,6 @@
 {
     "name": "@flipbyte/when-condition",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "description": "Check conditional statements and return true/false",
     "main": "lib/index.js",
     "module": "es/index.js",
