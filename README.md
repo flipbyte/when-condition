@@ -123,6 +123,8 @@ There are 2 types of logical rules:
 Following are the available comparison rules:
 -   ```is``` - returns true if the object value strictly matches the comparison value.
 -   ```isNot``` - returns true if the object value does not match the comparison value.
+-   ```isOfType``` - returns true if the object value matches the specified type (Ex: string, undefined, etc.).
+-   ```isNotOfType``` - returns true if the object value does not matche the specified type (Ex: string, undefined, etc.).
 -   ```anyOf``` - returns true if at least one of the comparison values matches the object key value. The comparison value needs to be an array.
 -   ```allOf``` - returns true if all the object key value matches the comparison values. The comparison value needs to be an array.
 -   ```noneOf``` - returns true if none of the comparison values match the object key value. The comparison value needs to be an array.
