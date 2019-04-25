@@ -4,20 +4,12 @@ const get = (obj, path, defaultValue = undefined) => (
         .reduce((a, c) => (a && Object.hasOwnProperty.call(a, c)) ? a[c] : defaultValue, obj)
 );
 
-const logicalOperators = ['and', 'or'];
-
 var rules = {
     is: function(key, value, data) {
         return get(data, key) === value;
     },
-    isNot: function(key, value, data) {
-        return get(data, key) != value;
-    },
     isOfType: function(key, value, data) {
         return typeof get(data, key) === value;
-    },
-    isNotOfType: function(key, value, data) {
-        return typeof get(data, key) !== value;
     },
     allOf: function(key, values, data) {
         if(!Array.isArray(values)) {
@@ -55,12 +47,28 @@ var rules = {
     lte: function(key, value, data) {
         return get(data, key) <= value
     },
+};
+
+const logicalRules = {
+    and: function(data) {
+        return !data.includes(false);
+    },
+    or: function(data) {
+        return data.includes(true);
+    },
+    not: function(data) {
+        if (data.length !== 1) {
+            throw Error('"not" can have only one comparison rule, multiple rules given');
+        }
+
+        return !data[0];
+    }
 }
 
 const isValidCondition = (conditions) => {
     if(Array.isArray(conditions)
         && Array.isArray(conditions[1])
-        && logicalOperators.includes(conditions[0])
+        && (conditions[0] && logicalRules[conditions[0].toLowerCase()])
     ) {
         return true;
     }
@@ -76,20 +84,16 @@ const processRule = ([condition, key, value], data) => {
     return rules[condition](key, value, data);
 }
 
-const processCondition = (condition, data) => {
-    if(condition.toLowerCase() === 'or') {
-        return data.includes(true);
-    }
-
-    return !data.includes(false);
-}
+const processCondition = (condition, data) => (
+    logicalRules[condition.toLowerCase()](data)
+);
 
 const when = (conditions, data) => {
     if (typeof conditions === 'function') {
         return conditions(data);
     }
 
-    if(!isValidCondition(conditions)) {
+    if (!isValidCondition(conditions)) {
         return processRule(conditions, data);
     }
 
