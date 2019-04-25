@@ -126,7 +126,6 @@ Following are the available comparison rules:
 -   ```isOfType``` - returns true if the object value matches the specified type (Ex: string, undefined, etc.).
 -   ```anyOf``` - returns true if at least one of the comparison values matches the object key value. The comparison value needs to be an array.
 -   ```allOf``` - returns true if all the object key value matches the comparison values. The comparison value needs to be an array.
--   ```noneOf``` - returns true if none of the comparison values match the object key value. The comparison value needs to be an array.
 -   ```gt``` - returns true if the object key value is greater than the comparison value
 -   ```gte``` - returns true if the object key value is greater than or equal to the comparison value
 -   ```lt``` - returns true if the object key value is lesser than the comparison value
