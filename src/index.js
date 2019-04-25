@@ -27,14 +27,6 @@ var rules = {
         let dataValue = get(data, key);
         return values.includes(dataValue);
     },
-    noneOf: function(key, values, data) {
-        if(!Array.isArray(values)) {
-            throw Error('"noneOf" condition requires an array as #3 argument');
-        }
-
-        let dataValue = get(data, key);
-        return !values.includes(dataValue);
-    },
     gt: function(key, value, data) {
         return get(data, key) > value;
     },
