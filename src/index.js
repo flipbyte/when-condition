@@ -80,11 +80,7 @@ const processCondition = (condition, data) => (
     logicalRules[condition.toLowerCase()](data)
 );
 
-const when = (conditions, data) => {
-    if (typeof conditions === 'function') {
-        return conditions(data);
-    }
-
+const validate = (conditions, data) => {
     if (!isValidCondition(conditions)) {
         return processRule(conditions, data);
     }
@@ -100,6 +96,14 @@ const when = (conditions, data) => {
     })
 
     return processCondition(logicalRule, result)
+}
+
+const when = (conditions, data) => {
+    if (typeof conditions === 'function') {
+        return Promise.resolve(conditions(data));
+    }
+
+    return validate(conditions, data);
 }
 
 export default when;

@@ -104,12 +104,15 @@ when(rule, data) // => returns true or false
 
 ### Rules using callback
 
-You can also pass a callback function to check the data.
+You can also pass a callback function to check the data. Which will be resolved to a promise.
+It can either be a plain function or a promise
 
 ```js
 when(function(data) {
     return data.a !== data.b
-}, data)
+}, data).then((result) => {
+    //...handle your result
+})
 ```
 
 ## Logical rules
