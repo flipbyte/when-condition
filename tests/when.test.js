@@ -7,14 +7,16 @@ describe('when', () => {
         country: 'Germany'
     }
 
-    it('callback', () => {
-        expect(when(function(data) {
+    it('callback', async () => {
+        const valid = await when(function(data) {
             return data.name == 'John Doe' && data.age >= 18
-        }, data)).to.equal(true)
+        }, data);
+        expect(valid).to.equal(true);
 
-        expect(when(function(data) {
+        const inValid = await when(function(data) {
             return data.name == 'John' && data.age >= 18
-        }, data)).to.equal(false)
+        }, data);
+        expect(inValid).to.equal(false);
     })
 
     it('mixed deep conditions', () => {
